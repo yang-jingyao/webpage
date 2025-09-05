@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flosendo - Test Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'baloo': ['Baloo 2', 'cursive'] },
+                    colors: { 'primary': '#7B2EFF', 'secondary': '#C6FF4F' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Baloo 2', cursive; }
+        .page { display: none; }
+        .page.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-lg p-4">
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-primary">Flosendo</h1>
+            <div class="space-x-4">
+                <button onclick="showPage('landing')" class="px-4 py-2 rounded-lg bg-primary text-white">Home</button>
+                <button onclick="showPage('product')" class="px-4 py-2 rounded-lg text-gray-700 hover:bg-primary hover:text-white">Product</button>
+                <button onclick="showPage('subscribe')" class="px-4 py-2 rounded-lg text-gray-700 hover:bg-primary hover:text-white">Subscribe</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="landing" class="page active">
+        <div class="min-h-screen bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h1 class="text-5xl font-bold text-gray-900 mb-8">
+                    Welcome to <span class="text-primary">Flosendo</span>
+                </h1>
+                <div class="max-w-3xl mx-auto">
+                    <p class="text-xl text-gray-700 leading-relaxed mb-8">
+                        Reimagining education through fun, effective and collaborative enrichment courses. K12 students learn real life skills through bite sized hybrid content, developing critical thinking, confidence, creativity, and curiosity. Skills that set them apart in an AI enabled world.
+                    </p>
+                </div>
+                <div class="space-x-4">
+                    <button onclick="showPage('product')" class="bg-primary text-white px-8 py-3 rounded-lg text-lg font-semibold">Explore Our Product</button>
+                    <button onclick="showPage('subscribe')" class="bg-secondary text-gray-900 px-8 py-3 rounded-lg text-lg font-semibold">Join Our Community</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="product" class="page">
+        <div class="min-h-screen bg-gradient-to-br from-primary/10 to-secondary/10 py-16">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Our <span class="text-primary">Product</span></h2>
+                    <p class="text-xl text-gray-600">
+                        Explore engaging courses designed to spark critical thinking and entrepreneurial spirit in every student.<br>
+                        Launching entrepreneurship courses in 2026 for KS2 and KS3 in the UK.<br>
+                        Join our waitlist to discover how we help students thrive in a changing world.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 mb-16">
+                    <img src="1.png" 
+                         alt="Students presenting ideas" class="w-full h-80 object-cover rounded-xl shadow-lg">
+                    <img src="2.png" 
+                         alt="Neighborhood and transport model" class="w-full h-80 object-cover rounded-xl shadow-lg">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div id="subscribe" class="page">
+        <div class="min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5 py-16">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Contact <span class="text-primary">Us</span></h2>
+                    <p class="text-xl text-gray-600 mb-4">Have questions or want to join our waitlist?</p>
+                    <p class="text-lg text-gray-700">Email us - <a href="mailto:enquiries@flosendo.com" class="text-primary hover:underline">enquiries@flosendo.com</a></p>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Name (Optional)</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email <span class="text-red-500">*</span></label>
+                                <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary resize-none"></textarea>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 h-4 w-4 text-primary">
+                            <label class="ml-3 text-sm text-gray-700">Sign up for our email list for updates, promotions, and more.</label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-primary/90">
+                            Send
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

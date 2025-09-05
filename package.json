@@ -1,20 +1,13 @@
 {
-  "name": "flosendo-website",
+  "name": "flosendo-frontend",
   "version": "1.0.0",
-  "description": "Flosendo Edtech startup website",
-  "main": "backend/server.js",
+  "description": "Frontend for Flosendo website",
+  "main": "index.html",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "cd backend && npm run dev",
-    "client": "cd frontend && npm run dev",
-    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
-    "build": "cd frontend && npm run build",
-    "start": "cd backend && npm start"
+    "dev": "npx live-server --port=3000 --open=/index.html",
+    "build": "echo 'Build complete - static files ready'"
   },
-  "keywords": ["edtech", "entrepreneurship", "education"],
-  "author": "Flosendo",
-  "license": "MIT",
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "live-server": "^1.2.2"
   }
 }

@@ -3,132 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flosendo - Test Website</title>
+    <title>Flosendo - Entrepreneurship Education</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { 'baloo': ['Baloo 2', 'cursive'] },
-                    colors: { 'primary': '#7B2EFF', 'secondary': '#C6FF4F' }
+                    fontFamily: {
+                        'baloo': ['Baloo 2', 'cursive'],
+                    },
+                    colors: {
+                        'primary': '#7B2EFF',
+                        'secondary': '#C6FF4F',
+                    }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Baloo 2', cursive; }
-        .page { display: none; }
-        .page.active { display: block; }
+        body {
+            font-family: 'Baloo 2', cursive;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body class="bg-gray-50">
-    <nav class="bg-white shadow-lg p-4">
-        <div class="flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-primary">Flosendo</h1>
-            <div class="space-x-4">
-                <button onclick="showPage('landing')" class="px-4 py-2 rounded-lg bg-primary text-white">Home</button>
-                <button onclick="showPage('product')" class="px-4 py-2 rounded-lg text-gray-700 hover:bg-primary hover:text-white">Product</button>
-                <button onclick="showPage('subscribe')" class="px-4 py-2 rounded-lg text-gray-700 hover:bg-primary hover:text-white">Subscribe</button>
+<body class="bg-gray-50 font-baloo pt-16">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed top-0 z-50 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <h1 onclick="showPage('landing')" class="text-2xl font-bold text-primary cursor-pointer">Flosendo</h1>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="showPage('subscribe')" class="nav-btn px-4 py-2 rounded-lg text-gray-700 hover:bg-primary hover:text-white transition-colors duration-200">Waitlist</button>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div id="landing" class="page active">
-        <div class="min-h-screen bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <h1 class="text-5xl font-bold text-gray-900 mb-8">
-                    Welcome to <span class="text-primary">Flosendo</span>
-                </h1>
-                <div class="max-w-3xl mx-auto">
-                    <p class="text-xl text-gray-700 leading-relaxed mb-8">
-                        Reimagining education through fun, effective and collaborative enrichment courses. K12 students learn real life skills through bite sized hybrid content, developing critical thinking, confidence, creativity, and curiosity. Skills that set them apart in an AI enabled world.
+    <!-- Landing Page -->
+    <div id="landing" class="page active bg-gradient-to-br from-primary/10 to-secondary/10">
+        <!-- First Screen: Logo and Slogan -->
+        <section class="min-h-screen flex items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+                <div class="text-center fade-in">
+                    <h1 class="text-[7.5rem] md:text-[9rem] font-bold text-primary">Flosendo</h1>
+                    <p class="mt-0 leading-none text-[3rem] md:text-[3.75rem] text-black" style="font-family: 'Cavolini', 'Baloo 2', cursive; font-style: italic;">
+                        Where minds bloom
                     </p>
                 </div>
-                <div class="space-x-4">
-                    <button onclick="showPage('product')" class="bg-primary text-white px-8 py-3 rounded-lg text-lg font-semibold">Explore Our Product</button>
-                    <button onclick="showPage('subscribe')" class="bg-secondary text-gray-900 px-8 py-3 rounded-lg text-lg font-semibold">Join Our Community</button>
+            </div>
+        </section>
+
+        <!-- Second Screen: Original landing content -->
+        <section class="min-h-screen flex items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center fade-in">
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
+                        Introduction
+                    </h1>
+                    <div class="max-w-5xl mx-auto">
+                        <p class="text-lg md:text-xl text-gray-700 leading-relaxed whitespace-nowrap mb-2">Reimagining education through fun, effective and collaborative enrichment learning.</p>
+                        <p class="text-lg md:text-xl text-gray-700 leading-relaxed whitespace-nowrap mb-2">K12 students learn real life skills through bite sized hybrid content, developing critical thinking, confidence, creativity, and curiosity.</p>
+                        <p class="text-lg md:text-xl text-gray-700 leading-relaxed whitespace-nowrap mb-8">Skills that set students apart in a world with AI.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div id="product" class="page">
-        <div class="min-h-screen bg-gradient-to-br from-primary/10 to-secondary/10 py-16">
-            <div class="max-w-6xl mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Our <span class="text-primary">Product</span></h2>
-                    <p class="text-xl text-gray-600">
-                        Explore engaging courses designed to spark critical thinking and entrepreneurial spirit in every student.<br>
-                        Launching entrepreneurship courses in 2026 for KS2 and KS3 in the UK.<br>
-                        Join our waitlist to discover how we help students thrive in a changing world.
-                    </p>
+        <!-- Third Screen: Product Information -->
+        <section class="min-h-screen flex items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center fade-in">
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
+                        Product Information
+                    </h1>
+                    <div class="max-w-3xl mx-auto">
+                        <p class="text-xl text-gray-700 leading-relaxed mb-8">
+                            Explore engaging courses designed to spark critical thinking and entrepreneurial spirit in every student. Launching entrepreneurship courses in 2026 for KS2 and KS3 in the UK. Join our waitlist to discover how we help students thrive in a changing world.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button onclick="showPage('subscribe')" class="bg-secondary text-gray-900 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-secondary/90 transition-colors duration-200 shadow-lg">
+                                Join Waitlist
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="grid md:grid-cols-2 gap-12 mb-16">
-                    <img src="1.png" 
-                         alt="Students presenting ideas" class="w-full h-80 object-cover rounded-xl shadow-lg">
-                    <img src="2.png" 
-                         alt="Neighborhood and transport model" class="w-full h-80 object-cover rounded-xl shadow-lg">
-                </div>
-                
             </div>
-        </div>
+        </section>
     </div>
 
-    <div id="subscribe" class="page">
-        <div class="min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5 py-16">
-            <div class="max-w-4xl mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Contact <span class="text-primary">Us</span></h2>
+    
+
+    <!-- Subscribe Page -->
+    <div id="subscribe" class="page bg-gradient-to-br from-primary/5 to-secondary/5">
+        <!-- First Screen: Waitlist intro + form -->
+        <section class="min-h-screen py-16 flex items-center">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Join our waitlist</h2>
+                    <p class="text-lg md:text-xl text-gray-700">We're launching in 2026. Interested in piloting a Flosendo course. Join our <span class="text-primary">waitlist</span> Now.</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 fade-in">
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2">Full Name <span class="text-red-500">*</span></label>
+                                <input type="text" 
+                                       id="fullName" 
+                                       name="fullName" 
+                                       required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email <span class="text-red-500">*</span></label>
+                                <input type="email" 
+                                       id="email" 
+                                       name="email" 
+                                       required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="schoolName" class="block text-sm font-medium text-gray-700 mb-2">School Name <span class="text-red-500">*</span></label>
+                            <input type="text" 
+                                   id="schoolName" 
+                                   name="schoolName" 
+                                   required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200">
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-primary/90 transition-colors duration-200 shadow-lg">Join</button>
+                    </form>
+                    <div id="formMessage" class="mt-6 hidden">
+                        <div class="p-4 rounded-lg text-center">
+                            <p class="text-lg font-medium"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Second Screen: Contact info -->
+        <section class="min-h-screen py-16 flex items-center">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Contact <span class="text-primary">Us</span></h2>
                     <p class="text-xl text-gray-600 mb-4">Have questions or want to join our waitlist?</p>
                     <p class="text-lg text-gray-700">Email us - <a href="mailto:enquiries@flosendo.com" class="text-primary hover:underline">enquiries@flosendo.com</a></p>
                 </div>
-                
-                <div class="bg-white rounded-2xl shadow-xl p-8">
-                    <form class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Name (Optional)</label>
-                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Email <span class="text-red-500">*</span></label>
-                                <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                            <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary resize-none"></textarea>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <input type="checkbox" class="mt-1 h-4 w-4 text-primary">
-                            <label class="ml-3 text-sm text-gray-700">Sign up for our email list for updates, promotions, and more.</label>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-primary/90">
-                            Send
-                        </button>
-                    </form>
-                </div>
             </div>
-        </div>
+        </section>
     </div>
 
-    <!-- Footer -->
-    <footer class="py-8">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-sm text-gray-500">© 2025 Flosendo Ltd. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
+        // Navigation functionality
         function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+                selectedPage.classList.add('fade-in');
+            }
+            
+            // Update navigation buttons
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-white');
+                btn.classList.add('text-gray-700');
+            });
+
+            // Highlight only the matching nav button (not the logo)
+            const buttonToHighlight = Array.from(navButtons).find(
+                btn => btn.getAttribute('onclick') === `showPage('${pageId}')`
+            );
+            if (buttonToHighlight) {
+                buttonToHighlight.classList.add('bg-primary', 'text-white');
+                buttonToHighlight.classList.remove('text-gray-700');
+            }
         }
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                schoolName: formData.get('schoolName')
+            };
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            
+            try {
+                const response = await fetch('/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                const messageDiv = document.getElementById('formMessage');
+                const messageText = messageDiv.querySelector('p');
+                
+                if (response.ok) {
+                    messageText.textContent = result.message;
+                    messageDiv.className = 'mt-6 p-4 rounded-lg text-center bg-green-100 text-green-800';
+                    this.reset();
+                } else {
+                    messageText.textContent = result.error || 'An error occurred. Please try again.';
+                    messageDiv.className = 'mt-6 p-4 rounded-lg text-center bg-red-100 text-red-800';
+                }
+                
+                messageDiv.classList.remove('hidden');
+                
+                // Scroll to message
+                messageDiv.scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error:', error);
+                const messageDiv = document.getElementById('formMessage');
+                const messageText = messageDiv.querySelector('p');
+                messageText.textContent = 'Network error. Please check your connection and try again.';
+                messageDiv.className = 'mt-6 p-4 rounded-lg text-center bg-red-100 text-red-800';
+                messageDiv.classList.remove('hidden');
+            } finally {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+        });
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // With Home button removed, no initial nav highlight needed
+            const subscribeButton = document.querySelector('button[onclick="showPage(\'subscribe\')"]');
+            if (subscribeButton && document.getElementById('subscribe').classList.contains('active')) {
+                subscribeButton.classList.add('bg-primary', 'text-white');
+            }
+        });
     </script>
 </body>
 </html>

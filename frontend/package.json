@@ -1,0 +1,13 @@
+{
+  "name": "flosendo-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Flosendo website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx live-server --port=3000 --open=/index.html",
+    "build": "echo 'Build complete - static files ready'"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

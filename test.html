@@ -49,7 +49,7 @@
                     <h1 onclick="showPage('landing')" class="text-2xl font-bold text-primary cursor-pointer">Flosendo</h1>
                 </div>
                 <div class="flex space-x-4">
-                    <button onclick="showPage('subscribe')" class="nav-btn px-4 py-2 rounded-lg text-gray-700 hover:bg-primary hover:text-white transition-colors duration-200">Waitlist</button>
+                    <button onclick="showPage('subscribe')" class="nav-btn px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-md">Waitlist</button>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
                 <div class="text-center fade-in">
                     <h1 class="text-[7.5rem] md:text-[9rem] font-bold text-primary">Flosendo</h1>
                     <p class="mt-0 leading-none text-[3rem] md:text-[3.75rem] text-black" style="font-family: 'Cavolini', 'Baloo 2', cursive; font-style: italic;">
-                        Where minds bloom
+                        Where young minds bloom
                     </p>
                 </div>
             </div>
@@ -73,12 +73,12 @@
         <section class="min-h-screen flex items-center">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div class="text-center fade-in">
-                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
-                        Introduction
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+                        Fun Effective Collaborative Enrichment Learning
                     </h1>
                     <div class="max-w-5xl mx-auto">
                         <p class="text-lg md:text-xl text-gray-700 leading-relaxed whitespace-nowrap mb-2">Reimagining education through fun, effective and collaborative enrichment learning.</p>
-                        <p class="text-lg md:text-xl text-gray-700 leading-relaxed whitespace-nowrap mb-2">K12 students learn real life skills through bite sized hybrid content, developing critical thinking, confidence, creativity, and curiosity.</p>
+                        <p class="text-lg md:text-xl text-gray-700 leading-relaxed whitespace-nowrap mb-2">K12 students learn future skills through bite sized hybrid content developing critical thinking, creativity and curiosity.</p>
                         <p class="text-lg md:text-xl text-gray-700 leading-relaxed whitespace-nowrap mb-8">Skills that set students apart in a world with AI.</p>
                     </div>
                 </div>
@@ -112,11 +112,11 @@
     <!-- Subscribe Page -->
     <div id="subscribe" class="page bg-gradient-to-br from-primary/5 to-secondary/5">
         <!-- First Screen: Waitlist intro + form -->
-        <section class="min-h-screen py-16 flex items-center">
+        <section id="waitlist-top" class="min-h-screen py-16 flex items-center">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div class="text-center mb-12 fade-in">
                     <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Join our <span class="text-primary">waitlist</span></h2>
-                    <p class="text-lg md:text-xl text-gray-700">We're launching in 2026. Interested in piloting a Flosendo course. Join our waitlist Now.</p>
+                    <p class="text-lg md:text-xl text-gray-700">We're launching in 2026. Interested in piloting a Flosendo course. Join our waitlist now.</p>
                 </div>
                 <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 fade-in">
                     <form id="contactForm" class="space-y-6">
@@ -158,7 +158,7 @@
         </section>
 
         <!-- Second Screen: Contact info -->
-        <section class="min-h-screen py-16 flex items-center">
+        <section id="contact-us" class="min-h-screen py-16 flex items-center">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div class="text-center mb-12 fade-in">
                     <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Contact <span class="text-primary">Us</span></h2>
@@ -183,22 +183,23 @@
             if (selectedPage) {
                 selectedPage.classList.add('active');
                 selectedPage.classList.add('fade-in');
+                
+                // Always scroll to top of the page when switching pages
+                window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
             }
             
             // Update navigation buttons
             const navButtons = document.querySelectorAll('.nav-btn');
             navButtons.forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white');
-                btn.classList.add('text-gray-700');
+                btn.classList.remove('ring-2', 'ring-white', 'ring-offset-2');
             });
 
             // Highlight only the matching nav button (not the logo)
             const buttonToHighlight = Array.from(navButtons).find(
-                btn => btn.getAttribute('onclick') === `showPage('${pageId}')`
+                btn => btn.getAttribute('onclick').includes(`showPage('${pageId}'`)
             );
             if (buttonToHighlight) {
-                buttonToHighlight.classList.add('bg-primary', 'text-white');
-                buttonToHighlight.classList.remove('text-gray-700');
+                buttonToHighlight.classList.add('ring-2', 'ring-white', 'ring-offset-2');
             }
         }
         
@@ -261,11 +262,13 @@
         
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
-            // With Home button removed, no initial nav highlight needed
-            const subscribeButton = document.querySelector('button[onclick="showPage(\'subscribe\')"]');
-            if (subscribeButton && document.getElementById('subscribe').classList.contains('active')) {
-                subscribeButton.classList.add('bg-primary', 'text-white');
+            // Set scroll restoration to manual to prevent browser from auto-scrolling
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
             }
+            
+            // Ensure page starts at top
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         });
     </script>
 </body>

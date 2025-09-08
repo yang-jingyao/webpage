@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "npx live-server --port=3000 --open=/index.html",
-    "build": "echo 'Build complete - static files ready'"
+    "build": "echo 'Static site - no build needed'"
   },
   "devDependencies": {
     "live-server": "^1.2.2"

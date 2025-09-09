@@ -202,6 +202,37 @@
             }
         }
         
+        // Toast notification function
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out ${
+                type === 'success' 
+                    ? 'bg-green-500 text-white' 
+                    : 'bg-red-500 text-white'
+            }`;
+            toast.textContent = message;
+            
+            // Add to page
+            document.body.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+                toast.style.opacity = '1';
+            }, 100);
+            
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)';
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -215,11 +246,11 @@
             
             const submitButton = this.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
-            submitButton.textContent = 'Sending...';
+            submitButton.textContent = 'Joining...';
             submitButton.disabled = true;
             
             try {
-                const response = await fetch('/subscribe', {
+                const response = await fetch('/api/waitlist', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -229,30 +260,19 @@
                 
                 const result = await response.json();
                 
-                const messageDiv = document.getElementById('formMessage');
-                const messageText = messageDiv.querySelector('p');
-                
-                if (response.ok) {
-                    messageText.textContent = result.message;
-                    messageDiv.className = 'mt-6 p-4 rounded-lg text-center bg-green-100 text-green-800';
+                if (response.ok && result.ok) {
+                    // Success - show toast and reset form
+                    showToast('Joined! Thanks — we\'ll be in touch.', 'success');
                     this.reset();
                 } else {
-                    messageText.textContent = result.error || 'An error occurred. Please try again.';
-                    messageDiv.className = 'mt-6 p-4 rounded-lg text-center bg-red-100 text-red-800';
+                    // Error - show error toast
+                    const errorMessage = result.error || 'An error occurred. Please try again.';
+                    showToast(errorMessage, 'error');
                 }
-                
-                messageDiv.classList.remove('hidden');
-                
-                // Scroll to message
-                messageDiv.scrollIntoView({ behavior: 'smooth' });
                 
             } catch (error) {
                 console.error('Error:', error);
-                const messageDiv = document.getElementById('formMessage');
-                const messageText = messageDiv.querySelector('p');
-                messageText.textContent = 'Network error. Please check your connection and try again.';
-                messageDiv.className = 'mt-6 p-4 rounded-lg text-center bg-red-100 text-red-800';
-                messageDiv.classList.remove('hidden');
+                showToast('Network error. Please check your connection and try again.', 'error');
             } finally {
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;

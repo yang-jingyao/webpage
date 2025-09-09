@@ -9,6 +9,14 @@
     <script>
         tailwind.config = {
             theme: {
+                screens: {
+                    'xs': '475px',
+                    'sm': '640px',
+                    'md': '768px',
+                    'lg': '1024px',
+                    'xl': '1280px',
+                    '2xl': '1536px',
+                },
                 extend: {
                     fontFamily: {
                         'baloo': ['Baloo 2', 'cursive'],
@@ -24,6 +32,7 @@
     <style>
         body {
             font-family: 'Baloo 2', cursive;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         .page {
             display: none;
@@ -38,6 +47,167 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* Unified mobile classes - same as Product Information */
+        .mobile-heading {
+            font-size: 1rem; /* text-base - very small for mobile */
+            line-height: 1.2;
+        }
+        
+        .mobile-text {
+            font-size: 0.75rem; /* text-xs - very small for mobile */
+            line-height: 1.4;
+        }
+        
+        /* Responsive scaling - same as Product Information */
+        @media (min-width: 475px) {
+            .mobile-heading {
+                font-size: 1.25rem; /* text-xl */
+            }
+            .mobile-text {
+                font-size: 0.875rem; /* text-sm */
+            }
+        }
+        
+        @media (min-width: 640px) {
+            .mobile-heading {
+                font-size: 1.5rem; /* text-2xl */
+            }
+            .mobile-text {
+                font-size: 1rem; /* text-base */
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-heading {
+                font-size: 2rem; /* text-3xl */
+            }
+            .mobile-text {
+                font-size: 1.125rem; /* text-lg */
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .mobile-heading {
+                font-size: 2.5rem; /* text-4xl */
+            }
+            .mobile-text {
+                font-size: 1.25rem; /* text-xl */
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .mobile-heading {
+                font-size: 3rem; /* text-5xl */
+            }
+            .mobile-text {
+                font-size: 1.5rem; /* text-2xl */
+            }
+        }
+        
+        /* Mobile-specific improvements */
+        @media (max-width: 640px) {
+            .text-balance {
+                text-wrap: balance;
+            }
+            
+            /* Ensure text doesn't overflow on very small screens */
+            h1, h2, h3, p {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+                max-width: 100%;
+            }
+            
+            /* Improve button touch targets */
+            button {
+                min-height: 44px;
+            }
+            
+            /* Better spacing for mobile */
+            .min-h-screen {
+                min-height: 100vh;
+                min-height: 100dvh; /* Dynamic viewport height for mobile */
+            }
+            
+            /* Prevent any text from causing horizontal scroll */
+            .break-words {
+                word-break: break-word;
+                overflow-wrap: break-word;
+            }
+            
+            /* Force text to fit within container */
+            .text-center {
+                max-width: 100vw;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+        
+        /* Tablet improvements */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .text-balance {
+                text-wrap: balance;
+            }
+        }
+        
+        /* Ensure all containers respect viewport width */
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* Prevent horizontal overflow */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        
+        /* Additional safety for very small screens */
+        @media (max-width: 374px) {
+            .max-w-7xl {
+                max-width: 100vw;
+                padding-left: 0.25rem;
+                padding-right: 0.25rem;
+            }
+            
+            .px-4, .px-2 {
+                padding-left: 0.25rem !important;
+                padding-right: 0.25rem !important;
+            }
+            
+            .mobile-heading {
+                font-size: 0.875rem !important; /* Even smaller for very small screens */
+            }
+        }
+        
+        /* Ensure text containers never exceed viewport */
+        .text-center {
+            max-width: 100%;
+            overflow: hidden;
+        }
+        
+        /* Force all text to stay within bounds */
+        .mobile-heading, .mobile-text {
+            max-width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        /* Additional mobile safety */
+        @media (max-width: 640px) {
+            .max-w-7xl {
+                max-width: 100vw;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            
+            .max-w-5xl, .max-w-3xl {
+                max-width: 100%;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-baloo pt-16">
@@ -46,10 +216,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0">
-                    <h1 onclick="showPage('landing')" class="text-2xl font-bold text-primary cursor-pointer">Flosendo</h1>
+                    <h1 onclick="showPage('landing')" class="text-xl sm:text-2xl font-bold text-primary cursor-pointer">Flosendo</h1>
                 </div>
-                <div class="flex space-x-4">
-                    <button onclick="showPage('subscribe')" class="nav-btn px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-md">Waitlist</button>
+                <div class="flex space-x-2 sm:space-x-4">
+                    <button onclick="showPage('subscribe')" class="nav-btn px-3 sm:px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-md text-sm sm:text-base">Waitlist</button>
                 </div>
             </div>
         </div>
@@ -60,25 +230,27 @@
         <!-- First Screen: Logo and Slogan -->
         <section class="min-h-screen flex items-center">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
-                <div class="text-center fade-in">
-                    <h1 class="text-[7.5rem] md:text-[9rem] font-bold text-primary">Flosendo</h1>
-                    <p class="mt-0 leading-none text-[3rem] md:text-[3.75rem] text-black" style="font-family: 'Cavolini', 'Baloo 2', cursive; font-style: italic;">
-                        Where young minds bloom
-                    </p>
+                <div class="text-center fade-in px-2 sm:px-4">
+                    <h1 class="mobile-heading font-bold text-primary mb-4 sm:mb-6 md:mb-8 break-words">Flosendo</h1>
+                    <div class="max-w-3xl mx-auto">
+                        <p class="mobile-text text-black leading-relaxed mb-4 sm:mb-6 md:mb-8 px-1 sm:px-2" style="font-family: 'Cavolini', 'Baloo 2', cursive; font-style: italic;">
+                            Where young minds bloom
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Second Screen: Original landing content -->
         <section class="min-h-screen flex items-center">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div class="text-center fade-in">
-                    <h2 class="text-5xl md:text-6xl font-bold text-indigo-700 mb-8 tracking-tight leading-tight text-balance">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+                <div class="text-center fade-in px-2 sm:px-4">
+                    <h2 class="mobile-heading font-bold text-indigo-700 mb-4 sm:mb-6 md:mb-8 break-words">
                         Fun, Effective, Collaborative Enrichment Learning
                     </h2>
-                    <div class="max-w-5xl mx-auto">
-                        <p class="text-lg md:text-xl text-gray-700 leading-relaxed whitespace-nowrap mb-2">K12 students learn future skills through bite sized hybrid content developing critical thinking, creativity and curiosity.</p>
-                        <p class="text-lg md:text-xl text-gray-700 leading-relaxed whitespace-nowrap mb-8">Skills that set students apart in a world with AI.</p>
+                    <div class="max-w-3xl mx-auto">
+                        <p class="mobile-text text-gray-700 leading-relaxed mb-4 sm:mb-6 md:mb-8 px-1 sm:px-2">K12 students learn future skills through bite sized hybrid content developing critical thinking, creativity and curiosity.</p>
+                        <p class="mobile-text text-gray-700 leading-relaxed mb-4 sm:mb-6 md:mb-8 px-1 sm:px-2">Skills that set students apart in a world with AI.</p>
                     </div>
                 </div>
             </div>
@@ -86,17 +258,17 @@
 
         <!-- Third Screen: Product Information -->
         <section class="min-h-screen flex items-center">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div class="text-center fade-in">
-                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+                <div class="text-center fade-in px-2 sm:px-4">
+                    <h1 class="mobile-heading font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 break-words">
                         Product Information
                     </h1>
                     <div class="max-w-3xl mx-auto">
-                        <p class="text-xl text-gray-700 leading-relaxed mb-8">
+                        <p class="mobile-text text-gray-700 leading-relaxed mb-4 sm:mb-6 md:mb-8 px-1 sm:px-2">
                             Explore engaging courses designed to spark critical thinking and entrepreneurial spirit in every student. Launching entrepreneurship courses in 2026 for KS2 and KS3 in the UK. Join our waitlist to discover how we help students thrive in a changing world.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button onclick="showPage('subscribe')" class="bg-secondary text-gray-900 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-secondary/90 transition-colors duration-200 shadow-lg">
+                            <button onclick="showPage('subscribe')" class="bg-secondary text-gray-900 px-4 sm:px-6 md:px-8 py-3 rounded-lg text-sm sm:text-base md:text-lg font-semibold hover:bg-secondary/90 transition-colors duration-200 shadow-lg">
                                 Join Waitlist
                             </button>
                         </div>
@@ -114,19 +286,19 @@
         <section id="waitlist-top" class="min-h-screen py-16 flex items-center">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Join our <span class="text-primary">waitlist</span></h2>
-                    <p class="text-lg md:text-xl text-gray-700">We're launching in 2026. Interested in piloting a Flosendo course. Join our waitlist now.</p>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 px-4">Join our <span class="text-primary">waitlist</span></h2>
+                    <p class="text-base sm:text-lg md:text-xl text-gray-700 px-4">We're launching in 2026. Interested in piloting a Flosendo course. Join our waitlist now.</p>
                 </div>
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 fade-in">
+                <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 fade-in mx-4 sm:mx-0">
                     <form id="contactForm" class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                             <div>
                                 <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2">Full Name <span class="text-red-500">*</span></label>
                                 <input type="text" 
                                        id="fullName" 
                                        name="fullName" 
                                        required 
-                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200">
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200 text-base">
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email <span class="text-red-500">*</span></label>
@@ -134,7 +306,7 @@
                                        id="email" 
                                        name="email" 
                                        required 
-                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200">
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200 text-base">
                             </div>
                         </div>
                         <div>
@@ -143,9 +315,9 @@
                                    id="schoolName" 
                                    name="schoolName" 
                                    required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200">
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200 text-base">
                         </div>
-                        <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-primary/90 transition-colors duration-200 shadow-lg">Join</button>
+                        <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-lg text-base sm:text-lg font-semibold hover:bg-primary/90 transition-colors duration-200 shadow-lg">Join</button>
                     </form>
                     <div id="formMessage" class="mt-6 hidden">
                         <div class="p-4 rounded-lg text-center">
@@ -160,9 +332,9 @@
         <section id="contact-us" class="min-h-screen py-16 flex items-center">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Contact <span class="text-primary">Us</span></h2>
-                    <p class="text-xl text-gray-600 mb-4">Have questions or want to join our waitlist?</p>
-                    <p class="text-lg text-gray-700">Email us - <a href="mailto:enquiries@flosendo.com" class="text-primary hover:underline">enquiries@flosendo.com</a></p>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 px-4">Contact <span class="text-primary">Us</span></h2>
+                    <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-4 px-4">Have questions or want to join our waitlist?</p>
+                    <p class="text-base sm:text-lg text-gray-700 px-4">Email us - <a href="mailto:enquiries@flosendo.com" class="text-primary hover:underline break-all sm:break-normal">enquiries@flosendo.com</a></p>
                 </div>
             </div>
         </section>
@@ -205,7 +377,7 @@
         // Toast notification function
         function showToast(message, type = 'success') {
             const toast = document.createElement('div');
-            toast.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out ${
+            toast.className = `fixed top-4 right-4 left-4 sm:left-auto z-50 px-4 sm:px-6 py-3 sm:py-4 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out ${
                 type === 'success' 
                     ? 'bg-green-500 text-white' 
                     : 'bg-red-500 text-white'

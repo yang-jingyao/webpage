@@ -1,0 +1,7 @@
+backend/
+setup.bat
+setup.sh
+DEPLOYMENT.md
+README.md
+node_modules/
+*.log
